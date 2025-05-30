@@ -66,7 +66,7 @@
       (map-set custody-events
         { item-id: item-id, event-id: event-id }
         {
-          timestamp: block-height,
+          timestamp: stacks-block-height,
           from: tx-sender,
           to: to,
           location: location,
@@ -103,6 +103,6 @@
 (define-read-only (is-expired (item-id (string-ascii 64)))
   (let ((item (map-get? supply-items { item-id: item-id })))
     (if (is-some item)
-      (>= block-height (get expiry-date (unwrap-panic item)))
+      (>= stacks-block-height (get expiry-date (unwrap-panic item)))
       false)))
       
